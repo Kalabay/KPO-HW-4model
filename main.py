@@ -6,6 +6,7 @@ import sqlite3 as sl
 
 app = Flask(__name__)
 
+#бд1
 con = sl.connect('main.db', check_same_thread=False)
 con.execute("DROP TABLE IF EXISTS user")
 user_id = 0
@@ -21,7 +22,7 @@ con.execute("""
         );
         """)
 
-
+#бд2
 con.execute("DROP TABLE IF EXISTS session")
 session_id = 0
 con.execute("""
@@ -34,7 +35,7 @@ con.execute("""
         );
     """)
 
-
+#для регистрации
 @app.route('/register', methods=['POST'])
 def register():
     global user_id
@@ -61,6 +62,7 @@ def register():
     return ({"message": "User registered successfully"}), 201
 
 
+#для входа
 @app.route('/login', methods=['POST'])
 def login():
     global session_id
@@ -81,7 +83,7 @@ def login():
     else:
         return ({"message": "Invalid email or password", "token": None}), 401
 
-
+#для проверки токена
 @app.route('/token', methods=['POST'])
 def loginToken():
     data = request.get_json()
@@ -90,7 +92,7 @@ def loginToken():
     check = con.execute(select_token, (token))
     return check.fetchall() != []
 
-
+#для информации
 @app.route('/user_info', methods=['GET'])
 def user_info():
     data = request.get_json()
