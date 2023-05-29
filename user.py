@@ -2,6 +2,7 @@ import json
 import hashlib
 import requests
 
+#считывание числа в заданных границах
 def get_number(l, r):
     while True:
         try:
@@ -14,6 +15,7 @@ def get_number(l, r):
             print("Повторите")
 
 
+#считывание почты
 def get_email():
     while True:
         try:
@@ -25,7 +27,7 @@ def get_email():
         except:
             print("Повторите")
 
-
+#регистрация
 def reg():
     while True:
         print("Логин")
@@ -55,7 +57,7 @@ def reg():
         else:
             print(inf["message"])
 
-
+#вход в аккаунт
 def log():
     while True:
         try:
@@ -86,7 +88,7 @@ def log():
             print_token.close()
             return
 
-
+#получение информации
 def info():
     try:
         get_token = open('token')
@@ -101,7 +103,7 @@ def info():
     except:
         print("Нет файла с токеном")
 
-
+#меню
 if __name__ == "__main__":
     while True:
         print("Возможные действия:")
